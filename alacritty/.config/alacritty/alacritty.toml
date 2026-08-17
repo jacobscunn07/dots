@@ -1,0 +1,21 @@
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l"]
+
+[font]
+size = 16
+
+[font.normal]
+family = "Iosevka Nerd Font Mono"
+style = "Regular"
+
+[terminal]
+
+#[font.normal]
+#family = "3270 Nerd Font Mono"
+#style = "Regular"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
