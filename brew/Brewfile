@@ -49,15 +49,15 @@ brew "luarocks"
 brew "neovim"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Zsh prompt for Astronauts
-brew "spaceship"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Tail multiple Kubernetes pods & their containers
 brew "stern"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
-# Extremely fast Python package installer and resolver, written in Rust
+# Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
 brew "wget"

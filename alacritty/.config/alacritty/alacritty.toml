@@ -13,3 +13,66 @@ style = "Regular"
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+# decorations = "Buttonless" removes the green button, and ToggleMaximized has no default
+# binding on any platform. Cmd+Ctrl+F (fullscreen) is an Alacritty default; this fills the
+# desktop instead, keeping the menu bar and staying out of a separate Space.
+[[keyboard.bindings]]
+key = "Return"
+mods = "Command"
+action = "ToggleMaximized"
+
+[window]
+# macOS sends Option as a compose modifier by default (option_as_alt = "None"), which eats
+# every Alt- binding before it reaches zellij. "Both" trades the composed characters
+# (å, é, –) for a working Alt key in the terminal.
+option_as_alt = "Both"
+
+# Breathing room around the text. dynamic_padding spreads the leftover pixels evenly
+# instead of piling them on one side.
+padding = { x = 10, y = 8 }
+dynamic_padding = true
+# macOS only: keeps the draggable title bar but drops the traffic lights.
+decorations = "Buttonless"
+
+# Transparency only reaches cells drawn with the default background. Anything that paints
+# its own stays fully solid at any value here: nvim fills the whole editor pane, zellij's
+# tab/status bars always emit an explicit background, and starship's powerline segments are
+# filled by design. In practice that leaves the shell pane and this padding translucent.
+opacity = 0.85
+
+# Gruvbox dark. Same values as zellij/.config/zellij/themes/gruvbox.kdl, so the zellij bars
+# read as continuous with the terminal rather than as a panel bolted on. Note they match in
+# colour only - the bars still paint that colour explicitly, so they stay opaque under the
+# window opacity above. Accents use the bright variants, legible against #282828.
+[colors.primary]
+background = "#282828"
+foreground = "#ebdbb2"
+
+[colors.cursor]
+text = "#282828"
+cursor = "#ebdbb2"
+
+[colors.selection]
+text = "#282828"
+background = "#a89984"
+
+[colors.normal]
+black   = "#282828"
+red     = "#cc241d"
+green   = "#98971a"
+yellow  = "#d79921"
+blue    = "#458588"
+magenta = "#b16286"
+cyan    = "#689d6a"
+white   = "#a89984"
+
+[colors.bright]
+black   = "#928374"
+red     = "#fb4934"
+green   = "#b8bb26"
+yellow  = "#fabd2f"
+blue    = "#83a598"
+magenta = "#d3869b"
+cyan    = "#8ec07c"
+white   = "#ebdbb2"

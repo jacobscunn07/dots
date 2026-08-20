@@ -1,0 +1,143 @@
+// Gruvbox dark. Same palette as starship/.config/starship/starship.toml.
+//
+// The four bar elements below (text_* and ribbon_*) deliberately use ONE accent - yellow
+// #fabd2f - in all four emphasis slots, over gray text. It is undocumented which emphasis
+// index the status-bar uses for a key letter versus its label, so uniform slots guarantee
+// "keys highlight yellow, everything else stays gray" whichever one it reaches for. The
+// table_*/list_*/frame_* elements below keep richer colour: they drive the session and
+// plugin managers, where differentiation helps scanning.
+//
+// Every element keeps an explicit `background`, and the bars therefore stay OPAQUE under
+// Alacritty's window opacity. This is not a choice - zellij offers no way to make a bar
+// inherit the terminal's default background. Verified by render capture: `background 0`
+// parses as ANSI colour index 0, and omitting the key falls back to the same thing; both
+// emit an explicit background, which terminal transparency does not apply to.
+//
+//   bg0 #282828   bg1 #3c3836   bg2 #504945   gray #928374
+//   fg1 #ebdbb2   fg3 #bdae93
+//   red #fb4934   green #b8bb26   yellow #fabd2f
+//   blue #83a598  purple #d3869b  aqua #8ec07c   orange #fe8019
+themes {
+    gruvbox {
+        // Plugin body text, and the bar backgrounds.
+        text_unselected {
+            base 146 131 116
+            background 40 40 40
+            emphasis_0 250 189 47
+            emphasis_1 250 189 47
+            emphasis_2 250 189 47
+            emphasis_3 250 189 47
+        }
+        text_selected {
+            base 235 219 178
+            background 60 56 54
+            emphasis_0 250 189 47
+            emphasis_1 250 189 47
+            emphasis_2 250 189 47
+            emphasis_3 250 189 47
+        }
+        // Tab ribbons. Flat, not filled colour blocks.
+        ribbon_unselected {
+            base 146 131 116
+            background 40 40 40
+            emphasis_0 250 189 47
+            emphasis_1 250 189 47
+            emphasis_2 250 189 47
+            emphasis_3 250 189 47
+        }
+        ribbon_selected {
+            base 235 219 178
+            background 80 73 69
+            emphasis_0 250 189 47
+            emphasis_1 250 189 47
+            emphasis_2 250 189 47
+            emphasis_3 250 189 47
+        }
+        table_title {
+            base 184 187 38
+            background 0
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        table_cell_unselected {
+            base 235 219 178
+            background 40 40 40
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        table_cell_selected {
+            base 235 219 178
+            background 80 73 69
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        list_unselected {
+            base 235 219 178
+            background 40 40 40
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        list_selected {
+            base 235 219 178
+            background 80 73 69
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 184 187 38
+            emphasis_3 211 134 155
+        }
+        // Frames are off by default, but these still apply when toggled on (Ctrl-p z)
+        // and to floating panes, which always draw a frame.
+        frame_selected {
+            base 184 187 38
+            background 0
+            emphasis_0 254 128 25
+            emphasis_1 142 192 124
+            emphasis_2 211 134 155
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 254 128 25
+            background 0
+            emphasis_0 211 134 155
+            emphasis_1 254 128 25
+            emphasis_2 254 128 25
+            emphasis_3 254 128 25
+        }
+        exit_code_success {
+            base 184 187 38
+            background 0
+            emphasis_0 142 192 124
+            emphasis_1 60 56 54
+            emphasis_2 211 134 155
+            emphasis_3 131 165 152
+        }
+        exit_code_error {
+            base 251 73 52
+            background 0
+            emphasis_0 250 189 47
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 211 134 155
+            player_2 131 165 152
+            player_3 0
+            player_4 250 189 47
+            player_5 142 192 124
+            player_6 0
+            player_7 251 73 52
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
+}

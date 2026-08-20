@@ -21,6 +21,9 @@
 
 [delta]
     navigate = true
+    # Set here rather than relying on BAT_THEME, since git runs in contexts that never
+    # source the zsh env.
+    syntax-theme = gruvbox-dark
 
 [interactive]
     diffFilter = delta --color-only  # delta in `git add -p`, which core.pager does not cover

@@ -1,0 +1,23 @@
+// Two panes: nvim on the left at 2/3 width, a shell taking the leftover 1/3.
+// Loaded on every new session via `default_layout "main"` in config.kdl.
+layout {
+    pane split_direction="vertical" {
+        // Sizing only the left pane leaves the right one flexible, so it absorbs the
+        // remainder instead of the two fighting to add up to 100%.
+        pane size="67%" name="editor" command="nvim" {
+            args "."
+        }
+        pane name="shell"
+    }
+    // tab-bar: the tab list and nothing else. The status-bar below owns the mode and its
+    // keys, so neither row repeats the other.
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    // status-bar: the keybindings available in the current mode. This is the stock hint
+    // row, and it replaces the Alt+? tooltip, which is broken in 0.44.3 (it fails the
+    // runtime config re-parse and can stall the action queue).
+    pane size=1 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}

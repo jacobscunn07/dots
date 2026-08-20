@@ -19,6 +19,10 @@ elif command -v batcat >/dev/null 2>&1; then
   export MANPAGER="batcat -l man -p"
 fi
 
+# Drives bat itself, the fzf preview pane, MANPAGER above, and git diffs (delta uses bat
+# for syntax highlighting). Without this bat falls back to Monokai Extended.
+export BAT_THEME="gruvbox-dark"
+
 # ---------- GPG ----------
 export GPG_TTY=$(tty)
 
