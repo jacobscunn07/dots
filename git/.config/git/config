@@ -1,0 +1,122 @@
+# Git's per-user configuration. Stowed to ~/.config/git/config.
+# NOTE: ~/.gitconfig is read *after* this file and would override it. Keep it deleted.
+[user]
+    # Name and email live in ~/.config/git/config.local, which is not tracked.
+    # Without useConfigOnly git invents an identity from hostname + gecos and commits
+    # happily under it; this makes it refuse instead.
+    useConfigOnly = true
+
+[commit]
+    template = ~/.config/git/template
+    verbose = true
+
+[core]
+    # Global excludes come from ~/.config/git/ignore automatically, no excludesfile needed.
+    autocrlf = input  # keep new lines as input
+    whitespace = trailing-space,space-before-tab,tab-in-indent,blank-at-eof
+    pager = delta
+
+[apply]
+    whitespace = error  # refuse to apply patches with whitespace errors
+
+[delta]
+    navigate = true
+
+[interactive]
+    diffFilter = delta --color-only  # delta in `git add -p`, which core.pager does not cover
+    singlekey = true
+
+[advice]  # disable advices
+    addEmptyPathspec = false
+    pushNonFastForward = false
+    statusHints = false
+
+[blame]
+    coloring = highlightRecent
+    date = relative
+
+[diff]
+    context = 3  # less context in diffs
+    renames = copies  # detect copies as renames in diffs
+
+[init]
+    defaultBranch = main
+
+[log]
+    abbrevCommit = true  # short commits
+    graphColors  = blue,yellow,cyan,magenta,green,red
+
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all  # show individual untracked files
+
+[pager]
+    branch = false  # no need to use pager for git branch
+    tag = false
+
+[push]
+    autoSetupRemote = true  # easier to push new branches
+    default = current  # push only current branch by default
+    followTags = true  # push also tags
+
+[pull]
+    rebase = true
+
+[submodule]
+    fetchJobs = 16
+
+[rebase]
+    autoStash = true
+
+[pack]
+    threads = 0  # use all available threads
+    windowMemory = 1g  # use 1g of memory for pack window
+    packSizeLimit = 1g  # max size of a packfile
+
+# Integrity
+[transfer]
+    fsckObjects = true
+
+[receive]
+    fsckObjects = true
+
+[fetch]
+    fsckObjects = true
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
+# Colors
+# No [color "diff"] block: delta is the pager and applies its own diff styling.
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "decorate"]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta
+
+# URL shortcuts
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+# Shortcuts for a specific account (`git clone jc:some-repo`) are personal, so they
+# live in ~/.config/git/config.local - see config.local.example for the pattern.
+
+# Machine-local overrides: identity, and anything else specific to this machine.
+# Not tracked. Created by install.sh. A missing file here is not an error.
+[include]
+    path = ~/.config/git/config.local

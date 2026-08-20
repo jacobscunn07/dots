@@ -9,12 +9,6 @@ size = 16
 family = "Iosevka Nerd Font Mono"
 style = "Regular"
 
-[terminal]
-
-#[font.normal]
-#family = "3270 Nerd Font Mono"
-#style = "Regular"
-
 [[keyboard.bindings]]
 key = "Return"
 mods = "Shift"

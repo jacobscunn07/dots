@@ -1,0 +1,28 @@
+# Example machine-local git config.
+#
+#   cp ~/.config/git/config.local.example ~/.config/git/config.local
+#
+# ~/.config/git/config is tracked in the dotfiles repo and holds shared preferences.
+# This file is not tracked - put anything personal or machine-specific here.
+# It is included from the *end* of the tracked config, so settings here override it.
+# If it does not exist, git skips the include silently; it is entirely optional.
+
+[user]
+    # Required. The tracked config sets user.useConfigOnly, which stops git from
+    # inventing an identity from your hostname, so it refuses to commit until
+    # these are set.
+    name = Your Name
+    email = you@example.com
+
+# Optional. Shortcut for an account you clone from often:
+# `git clone me:dotfiles` -> git@github.com:your-handle/dotfiles
+#[url "git@github.com:your-handle/"]
+#    insteadOf = "me:"
+
+# Optional. Commit signing, if the key only exists on this machine.
+#[user]
+#    signingKey = ~/.ssh/id_ed25519.pub
+#[gpg]
+#    format = ssh
+#[commit]
+#    gpgSign = true

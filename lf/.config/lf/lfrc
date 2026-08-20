@@ -1,0 +1,46 @@
+# ~/.config/lf/lfrc
+
+# =========================================================
+# Display
+# =========================================================
+
+set icons true          # glyphs come from ~/.config/lf/icons
+set hidden true
+set drawbox true
+set scrolloff 5
+set info size
+
+# =========================================================
+# Behaviour
+# =========================================================
+
+set ignorecase true
+set shellopts '-eu'
+set ifs "\n"            # split command output on newlines only, so filenames with spaces survive
+
+# =========================================================
+# Preview
+# =========================================================
+
+set previewer ~/.config/lf/preview
+
+# =========================================================
+# Commands
+# =========================================================
+
+# $EDITOR is set to nvim in ~/.config/zsh/.zshenv
+cmd open ${{ $EDITOR "$f" }}
+
+cmd mkdir %{{
+  printf "directory name: "
+  read -r name
+  mkdir -p -- "$name"
+}}
+
+# =========================================================
+# Keybindings
+# =========================================================
+
+map . set hidden!
+map gh cd ~
+map gc cd ~/.config

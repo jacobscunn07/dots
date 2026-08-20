@@ -1,0 +1,43 @@
+
+
+
+# ---- Conventional Commits 1.0.0 -----------------------------------
+#
+#   <type>[(<scope>)][!]: <description>
+#
+#   [body]
+#
+#   [footer(s)]
+#
+# subject   imperative mood, lower case, no trailing period, <= 50 chars
+# body      wrap at 72; explain what changed and why, not how
+#
+# type
+#   feat      new feature (MINOR)
+#   fix       bug fix (PATCH)
+#   docs      documentation only
+#   style     formatting, no code change
+#   refactor  neither fixes a bug nor adds a feature
+#   perf      performance improvement
+#   test      adding or correcting tests
+#   build     build system or dependencies
+#   ci        CI config and scripts
+#   chore     other changes, no src or test files
+#   revert    reverts a previous commit
+#
+# scope     optional noun for the affected area:  feat(parser): ...
+#
+# breaking  append ! before the colon:  feat(api)!: drop v1 endpoints
+#           and/or add a footer:        BREAKING CHANGE: <what and why>
+#           either form means MAJOR
+#
+# footers   Refs: #123
+#           Closes: #123
+#           Co-authored-by: Name <email>
+#
+# examples
+#   feat(auth): add refresh token rotation
+#   fix: guard against empty pathspec
+#   docs(readme): document config.local setup
+#   refactor(lf)!: rename preview hook arguments
+# --------------------------------------------------------------------

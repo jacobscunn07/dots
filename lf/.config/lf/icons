@@ -1,0 +1,72 @@
+# ~/.config/lf/icons
+#
+# Whitespace-separated columns: <type-or-pattern> <icon> [color]
+# NOT the LS_COLORS "key=value" syntax that the LF_ICONS env var expects.
+# Glyphs are Nerd Font (font-iosevka-nerd-font, see brew/Brewfile).
+# Types not listed here (pi, so, bd, cd, ...) fall back to lf's own defaults.
+
+# ---------- File types ----------
+di             
+fi             
+ln             
+or             
+ex             
+
+# ---------- Languages ----------
+*.go           
+*.py           
+*.js           
+*.mjs          
+*.ts           
+*.tsx          
+*.jsx          
+*.rs           
+*.lua          
+*.c            
+*.h            
+*.sh           
+*.zsh          
+*.bash         
+*.vim          
+
+# ---------- Config & data ----------
+*.json         
+*.yaml         
+*.yml          
+*.toml         
+*.kdl          
+*.ini          
+*.conf         
+*.env          
+*.tf           󱁢
+*.tfvars       󱁢
+*.sql          
+
+# ---------- Docs & markup ----------
+*.md           
+*.txt          
+*.html         
+*.css          
+*.pdf          
+
+# ---------- Named files ----------
+Dockerfile     
+Makefile       
+Taskfile.yml   
+Brewfile       
+.gitignore     
+.gitconfig     
+
+# ---------- Archives & media ----------
+*.zip          
+*.tar          
+*.gz           
+*.tgz          
+*.png          
+*.jpg          
+*.jpeg         
+*.gif          
+*.svg          
+*.mp3          
+*.mp4          
+*.mov          

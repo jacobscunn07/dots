@@ -1,0 +1,22 @@
+#!/usr/bin/env sh
+#
+# lf previewer. Invoked as: preview <file> <width> <height> <x> <y>
+# Uses bat and eza, both already in brew/Brewfile.
+
+set -eu
+
+file="$1"
+width="${2:-80}"
+
+case "$(file --brief --mime-type -- "$file")" in
+  inode/directory)
+    eza --tree --level=2 --all --color=always --icons=always -- "$file"
+    ;;
+  text/* | application/json | application/javascript | application/xml | application/x-shellscript)
+    bat --style=plain --color=always --paging=never --terminal-width="$width" -- "$file"
+    ;;
+  *)
+    # Binary or unknown: describe it rather than dumping bytes into the pane.
+    file --brief -- "$file"
+    ;;
+esac
