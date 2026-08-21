@@ -36,10 +36,22 @@ dynamic_padding = true
 decorations = "Buttonless"
 
 # Transparency only reaches cells drawn with the default background. Anything that paints
-# its own stays fully solid at any value here: nvim fills the whole editor pane, zellij's
-# tab/status bars always emit an explicit background, and starship's powerline segments are
-# filled by design. In practice that leaves the shell pane and this padding translucent.
+# its own stays fully solid at any value here: zellij's tab/status bars always emit an
+# explicit background (see themes/gruvbox.kdl - zellij gives no way around it), starship's
+# powerline segments are filled by design, and nvim's statusline and tabufline paint
+# themselves even with base46 transparency on.
+#
+# nvim is otherwise translucent: chadrc.lua sets base46.transparency, which clears the
+# background on Normal and the float/popup groups. So both panes, the padding and the
+# editor body all pick this value up, and only the bars across the bottom stay solid.
 opacity = 0.85
+
+# Asks the compositor to blur whatever shows through. macOS honours this; it is a no-op
+# on platforms other than macOS and KDE Wayland. Pairs with the opacity above rather than
+# replacing it - blur alone changes nothing on an opaque window. The point is legibility:
+# now that the editor body is translucent too, an unblurred desktop puts high-contrast
+# detail directly behind the text.
+blur = true
 
 # Gruvbox dark. Same values as zellij/.config/zellij/themes/gruvbox.kdl, so the zellij bars
 # read as continuous with the terminal rather than as a panel bolted on. Note they match in

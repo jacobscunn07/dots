@@ -7,7 +7,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$REPO_ROOT/brew/Brewfile"
-PACKAGES=(alacritty git lf starship zellij zsh)
+PACKAGES=(alacritty git lf nvim starship zellij zsh)
 
 # Only install what's missing. Upgrading by default makes a re-run pull down large
 # cask updates and stop on a sudo prompt; pass --upgrade when you actually want that.
