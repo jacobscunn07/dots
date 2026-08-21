@@ -7,7 +7,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$REPO_ROOT/brew/Brewfile"
-PACKAGES=(alacritty git lf nvim starship zellij zsh)
+PACKAGES=(alacritty git k9s lf nvim starship zellij zsh)
 
 # Only install what's missing. Upgrading by default makes a re-run pull down large
 # cask updates and stop on a sudo prompt; pass --upgrade when you actually want that.
@@ -49,6 +49,11 @@ mkdir -p "$HOME/.config"
 # Same hazard one level deeper: if ~/.config/git doesn't exist, stow folds it into a
 # symlink to the repo and config.local (private identity) gets written inside the repo.
 mkdir -p "$HOME/.config/git"
+
+# Same hazard again: k9s rewrites config.yaml and aliases.yaml on every run. Neither is
+# tracked, but if ~/.config/k9s doesn't exist stow folds it into a symlink to the repo and
+# k9s writes both of them inside it.
+mkdir -p "$HOME/.config/k9s"
 
 # .zshrc writes history and the completion dump into these; zsh won't create them itself.
 mkdir -p "$HOME/.local/state/zsh" "$HOME/.cache/zsh"

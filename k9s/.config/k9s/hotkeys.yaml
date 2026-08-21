@@ -1,0 +1,47 @@
+# Jump straight to a resource view without going through `:` and typing an alias.
+#
+# Shift-<digit> deliberately, not Shift-<letter>: in any table view the Shift-letter
+# combinations are already taken by column sorting (Shift-N name, Shift-A age, Shift-S status,
+# and so on). `override` is left at its default false, so a hotkey that collides with a builtin
+# does not win - it silently never fires. If you add one, confirm it shows up under `?`.
+#
+# The command is whatever you would type after `:`, so k9s's own aliases work here. Note the
+# built-in alias set (dp, sec, jo, cr, crb, ro, rb, np) lives in ~/.config/k9s/aliases.yaml,
+# which k9s writes itself and this repo therefore does not track.
+hotKeys:
+  shift-1:
+    shortCut: Shift-1
+    description: Pods
+    command: po
+  shift-2:
+    shortCut: Shift-2
+    description: Deployments
+    command: dp
+  shift-3:
+    shortCut: Shift-3
+    description: Services
+    command: svc
+  shift-4:
+    shortCut: Shift-4
+    description: Ingresses
+    command: ing
+  shift-5:
+    shortCut: Shift-5
+    description: ConfigMaps
+    command: cm
+  shift-6:
+    shortCut: Shift-6
+    description: Secrets
+    command: sec
+  shift-7:
+    shortCut: Shift-7
+    description: Nodes
+    command: "no"   # quoted: a bare `no` risks being read as a YAML boolean
+  shift-8:
+    shortCut: Shift-8
+    description: Events
+    command: ev
+  shift-9:
+    shortCut: Shift-9
+    description: PVCs
+    command: pvc

@@ -11,6 +11,7 @@ M.base46 = {
   --   alacritty/.config/alacritty/alacritty.toml   [colors.*]
   --   zellij/.config/zellij/themes/gruvbox.kdl
   --   starship/.config/starship/starship.toml      [palettes.gruvbox_dark]
+  --   k9s/.config/k9s/skins/gruvbox.yaml
   theme = "gruvbox",
 
   -- Stop painting a background so the editor pane inherits Alacritty's `opacity`,

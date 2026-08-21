@@ -44,6 +44,11 @@ decorations = "Buttonless"
 # nvim is otherwise translucent: chadrc.lua sets base46.transparency, which clears the
 # background on Normal and the float/popup groups. So both panes, the padding and the
 # editor body all pick this value up, and only the bars across the bottom stay solid.
+#
+# k9s follows the same rule and is the one full-screen TUI here that can: its skin format
+# accepts the colour `default`, which emits no background at all, so k9s/.config/k9s/skins/
+# gruvbox.yaml takes it for the tables, YAML, logs, xray and charts and keeps only the
+# modals, the selected row and the breadcrumb bar filled.
 opacity = 0.85
 
 # Asks the compositor to blur whatever shows through. macOS honours this; it is a no-op

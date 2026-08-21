@@ -1,0 +1,154 @@
+# Gruvbox dark. Same palette as alacritty/.config/alacritty/alacritty.toml and
+# zellij/.config/zellij/themes/gruvbox.kdl.
+#
+# Unlike zellij - where every theme element is forced to carry an explicit background and the
+# bars therefore stay opaque - k9s accepts the colour name `default`, which emits no background
+# at all and lets the terminal's own (translucent) background through. So this is the first
+# config here that actually goes see-through beyond nvim's buffer body.
+#
+# The rule below: CONTENT surfaces are transparent, FLOATING and SELECTED surfaces are filled.
+# Everything you read through - the table, YAML, logs, xray, charts - takes `default` and picks
+# up Alacritty's opacity 0.85 + blur. Three things stay opaque on purpose: modal dialogs (they
+# float over a view and have to stay readable), the cursor row (a transparent selection is not a
+# selection), and the breadcrumb bar (a bar, filled to read continuously with the zellij status
+# bar directly beneath it).
+#
+# Selected via K9S_SKIN in zsh/.config/zsh/.zshenv rather than config.yaml's ui.skin, because
+# k9s rewrites config.yaml on every run and that file is deliberately not tracked here.
+#
+# Hex values must be quoted - a bare #282828 is a YAML comment.
+#
+#   bg0 #282828   bg1 #3c3836   bg2 #504945   bg3 #665c54   gray #928374
+#   fg1 #ebdbb2
+#   red #fb4934   green #b8bb26   yellow #fabd2f
+#   blue #83a598  purple #d3869b  aqua #8ec07c   orange #fe8019
+k9s:
+  body:
+    fgColor: '#ebdbb2'
+    bgColor: default
+    logoColor: '#fabd2f'
+    logoColorMsg: '#ebdbb2'
+    logoColorInfo: '#b8bb26'
+    logoColorWarn: '#fe8019'
+    logoColorError: '#fb4934'
+
+  # The `:` command line. `border.command` is the frame while typing a command,
+  # `border.default` the same frame at rest.
+  prompt:
+    fgColor: '#ebdbb2'
+    bgColor: default
+    suggestColor: '#928374'
+    border:
+      command: '#fabd2f'
+      default: '#665c54'
+
+  # Top-left cluster summary (context, cluster, versions, cpu/mem).
+  info:
+    fgColor: '#ebdbb2'
+    sectionColor: '#928374'
+
+  help:
+    fgColor: '#ebdbb2'
+    bgColor: default
+    sectionColor: '#fabd2f'
+    keyColor: '#83a598'
+    numKeyColor: '#d3869b'
+
+  # FILLED. Delete/scale/port-forward modals float over whatever view is behind them; with a
+  # transparent background the desktop shows through the panel and the buttons stop reading as
+  # a separate surface.
+  dialog:
+    fgColor: '#ebdbb2'
+    bgColor: '#3c3836'
+    buttonFgColor: '#ebdbb2'
+    buttonBgColor: '#504945'
+    buttonFocusFgColor: '#282828'
+    buttonFocusBgColor: '#fabd2f'
+    labelFgColor: '#fe8019'
+    fieldFgColor: '#ebdbb2'
+
+  frame:
+    # Border titles, e.g. `Pods(default)[12]`. counterColor is the [12], filterColor the
+    # </foo> filter echoed into the title.
+    title:
+      fgColor: '#928374'
+      bgColor: default
+      highlightColor: '#fabd2f'
+      counterColor: '#8ec07c'
+      filterColor: '#d3869b'
+    border:
+      fgColor: '#504945'
+      focusColor: '#83a598'
+    # The key hints across the top right. Single yellow accent over gray, the same rule the
+    # zellij theme uses for its status bar: keys highlight, labels stay quiet.
+    menu:
+      fgColor: '#928374'
+      keyColor: '#fabd2f'
+      numKeyColor: '#fabd2f'
+    # FILLED. bgColor is an inactive crumb, activeColor the current one - matching zellij's
+    # ribbon_unselected/ribbon_selected backgrounds so the two bars stack cleanly.
+    crumbs:
+      fgColor: '#ebdbb2'
+      bgColor: '#3c3836'
+      activeColor: '#504945'
+    # Row tinting by resource state.
+    status:
+      newColor: '#83a598'
+      modifyColor: '#8ec07c'
+      addColor: '#b8bb26'
+      pendingColor: '#fabd2f'
+      errorColor: '#fb4934'
+      highlightColor: '#fe8019'
+      killColor: '#d3869b'
+      completedColor: '#928374'
+
+  views:
+    table:
+      fgColor: '#ebdbb2'
+      bgColor: default
+      cursorFgColor: '#ebdbb2'
+      # FILLED. The selected row is the one thing that must not be see-through.
+      cursorBgColor: '#504945'
+      markColor: '#d3869b'
+      header:
+        fgColor: '#928374'
+        bgColor: default
+        sorterColor: '#fabd2f'
+        selectedSortColumnColor: '#fe8019'
+    xray:
+      fgColor: '#ebdbb2'
+      bgColor: default
+      cursorColor: '#504945'
+      cursorTextColor: '#ebdbb2'
+      graphicColor: '#83a598'
+    # Pulses/dials on the cluster overview. green -> red as usage climbs, matching the
+    # warn/critical thresholds in config.yaml.
+    charts:
+      bgColor: default
+      dialBgColor: default
+      chartBgColor: default
+      focusFgColor: '#282828'
+      focusBgColor: '#fabd2f'
+      defaultDialColors: ['#b8bb26', '#fb4934']
+      defaultChartColors: ['#b8bb26', '#fb4934']
+      resourceColors:
+        cpu: ['#83a598', '#d3869b']
+        mem: ['#fabd2f', '#fe8019']
+    yaml:
+      keyColor: '#83a598'
+      colonColor: '#928374'
+      valueColor: '#ebdbb2'
+    # Context/namespace pickers.
+    picker:
+      mainColor: '#ebdbb2'
+      focusColor: '#fabd2f'
+      shortcutColor: '#8ec07c'
+    logs:
+      fgColor: '#ebdbb2'
+      bgColor: default
+      # The toggle strip above the log body (autoscroll, wrap, timestamps...).
+      indicator:
+        fgColor: '#fabd2f'
+        bgColor: default
+        toggleOnColor: '#b8bb26'
+        toggleOffColor: '#928374'

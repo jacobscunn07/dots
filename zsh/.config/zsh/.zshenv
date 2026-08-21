@@ -23,6 +23,11 @@ fi
 # for syntax highlighting). Without this bat falls back to Monokai Extended.
 export BAT_THEME="gruvbox-dark"
 
+# Picks skins/gruvbox.yaml out of ~/.config/k9s/skins. Set here rather than as ui.skin in
+# k9s's config.yaml, because k9s rewrites that file on every run - so it is deliberately not
+# tracked in this repo and nothing in it would survive being version controlled.
+export K9S_SKIN="gruvbox"
+
 # ---------- GPG ----------
 export GPG_TTY=$(tty)
 

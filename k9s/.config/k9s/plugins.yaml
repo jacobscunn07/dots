@@ -1,0 +1,103 @@
+# Shell out to tooling that is already in brew/Brewfile. k9s suspends itself while the command
+# runs and redraws on exit.
+#
+# Available in args: $NAME (selected row), $NAMESPACE, $CONTEXT, $CLUSTER, $RESOURCE_NAME
+# (the plural resource type of the current view, e.g. "deployments"), $POD (in a container
+# view), $KUBECONFIG, $FILTER, and $COL-<COLUMN> for any column on screen.
+#
+# Shortcuts avoid Ctrl-J, Ctrl-M, Ctrl-I and Ctrl-H - terminals send those as Enter, Enter, Tab
+# and Backspace, so k9s never sees them as their own key. They also avoid the builtins
+# (Ctrl-A aliases, Ctrl-D delete, Ctrl-K kill, Ctrl-R refresh, Ctrl-S screendump, Ctrl-W wide,
+# Ctrl-Z fullscreen). A plugin whose shortcut collides just never fires, so check `?` after
+# adding one.
+#
+# stern is one entry per scope rather than one entry using $RESOURCE_NAME, because stern's
+# query syntax wants the singular resource ("deployment/foo") while $RESOURCE_NAME is plural.
+# The shortcut can repeat because the scopes are disjoint.
+plugins:
+  stern-pod:
+    shortCut: Ctrl-O
+    description: Logs (stern)
+    scopes:
+      - po
+    command: stern
+    background: false
+    args:
+      - --context
+      - $CONTEXT
+      - --namespace
+      - $NAMESPACE
+      - --timestamps=short
+      - pod/$NAME
+
+  stern-deployment:
+    shortCut: Ctrl-O
+    description: Logs (stern)
+    scopes:
+      - dp
+    command: stern
+    background: false
+    args:
+      - --context
+      - $CONTEXT
+      - --namespace
+      - $NAMESPACE
+      - --timestamps=short
+      - deployment/$NAME
+
+  stern-statefulset:
+    shortCut: Ctrl-O
+    description: Logs (stern)
+    scopes:
+      - sts
+    command: stern
+    background: false
+    args:
+      - --context
+      - $CONTEXT
+      - --namespace
+      - $NAMESPACE
+      - --timestamps=short
+      - statefulset/$NAME
+
+  stern-daemonset:
+    shortCut: Ctrl-O
+    description: Logs (stern)
+    scopes:
+      - ds
+    command: stern
+    background: false
+    args:
+      - --context
+      - $CONTEXT
+      - --namespace
+      - $NAMESPACE
+      - --timestamps=short
+      - daemonset/$NAME
+
+  # Needs the Docker daemon up (docker-desktop is in the Brewfile). $COL-IMAGE reads the IMAGE
+  # column of the container row, so this only makes sense inside a pod's container list.
+  dive-image:
+    shortCut: Ctrl-B
+    description: Image layers (dive)
+    scopes:
+      - containers
+    command: dive
+    background: false
+    args:
+      - $COL-IMAGE
+
+  # Piped through bat so the values are highlighted and paged; BAT_THEME (set in
+  # zsh/.config/zsh/.zshenv) keeps it gruvbox to match the rest of the view.
+  helm-values:
+    shortCut: Ctrl-Y
+    description: Release values
+    scopes:
+      - helm
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+        helm get values "$NAME" --namespace "$NAMESPACE" --kube-context "$CONTEXT"
+        | bat --language=yaml --paging=always --style=plain

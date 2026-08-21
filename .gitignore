@@ -11,3 +11,8 @@ git/.config/git/config.local
 # nvim writes personal dictionary entries (`zg`) beside its config, which stow
 # symlinks into this repo.
 nvim/.config/nvim/spell/
+
+# k9s rewrites these on every run, so they are deliberately left unmanaged. Belt and braces
+# in case ~/.config/k9s ever gets tree-folded into the repo before install.sh creates it.
+k9s/.config/k9s/config.yaml
+k9s/.config/k9s/aliases.yaml
