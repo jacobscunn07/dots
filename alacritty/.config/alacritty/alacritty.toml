@@ -32,8 +32,6 @@ option_as_alt = "Both"
 # instead of piling them on one side.
 padding = { x = 10, y = 8 }
 dynamic_padding = true
-# macOS only: keeps the draggable title bar but drops the traffic lights.
-decorations = "Buttonless"
 
 # Transparency only reaches cells drawn with the default background. Anything that paints
 # its own stays fully solid at any value here: zellij's tab/status bars always emit an

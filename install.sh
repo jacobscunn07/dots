@@ -7,7 +7,7 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BREWFILE="$REPO_ROOT/brew/Brewfile"
-PACKAGES=(alacritty git k9s lf nvim starship zellij zsh)
+PACKAGES=(alacritty claude git k9s lf nvim starship zellij zsh)
 
 # Only install what's missing. Upgrading by default makes a re-run pull down large
 # cask updates and stop on a sudo prompt; pass --upgrade when you actually want that.
@@ -54,6 +54,11 @@ mkdir -p "$HOME/.config/git"
 # tracked, but if ~/.config/k9s doesn't exist stow folds it into a symlink to the repo and
 # k9s writes both of them inside it.
 mkdir -p "$HOME/.config/k9s"
+
+# Worst case of the same hazard: ~/.claude is mostly runtime state that this repo does not
+# track (projects/, sessions/, history.jsonl, shell-snapshots/, plugins/). If it doesn't
+# exist, stow folds it into a symlink to the repo and Claude Code writes all of that inside it.
+mkdir -p "$HOME/.claude"
 
 # .zshrc writes history and the completion dump into these; zsh won't create them itself.
 mkdir -p "$HOME/.local/state/zsh" "$HOME/.cache/zsh"

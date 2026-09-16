@@ -16,3 +16,13 @@ nvim/.config/nvim/spell/
 # in case ~/.config/k9s ever gets tree-folded into the repo before install.sh creates it.
 k9s/.config/k9s/config.yaml
 k9s/.config/k9s/aliases.yaml
+
+# ~/.claude is mostly runtime state that install.sh deliberately leaves unmanaged
+# (projects/, sessions/, history.jsonl, plugins/, caches). Ignore the package wholesale and
+# re-include only what is tracked, in case ~/.claude ever gets tree-folded into the repo.
+claude/.claude/*
+!claude/.claude/CLAUDE.md
+!claude/.claude/settings.json
+
+# Machine-local Claude Code overrides, same idea as git/config.local: not shareable.
+claude/.claude/settings.local.json
